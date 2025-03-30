@@ -1,4 +1,5 @@
 import { Post, Author, Platform } from '../types';
+import { createPermalinkFromHash } from '../utils/hashGenerator';
 
 // Mock authors
 const mockAuthors: Author[] = [
@@ -39,76 +40,105 @@ const mockAuthors: Author[] = [
   }
 ];
 
+// Generate random hashes for each post
+const postHashes = [
+  'a7bX9cD3eF',
+  'g5hY2jK8lM',
+  'n4pQ6rS1tU',
+  'v3wX7yZ9aB',
+  'c2dE8fG4hI'
+];
+
 export const mockPosts: Post[] = [
   {
-    id: '1',
+    id: postHashes[0],
     author: mockAuthors[0],
     content: "Just built this amazing task management app using ChatAndBuild! The AI understood exactly what I needed and generated the perfect code. Check out the prompt I used:",
     promptPreview: "A React-based task management app with drag-and-drop functionality, local storage, and dark mode support.",
     promptFull: "# Task Management App with Drag-and-Drop\n\n## Requirements\nCreate a React-based task management application with the following features:\n- Task creation, editing, and deletion\n- Drag-and-drop functionality for task reordering and status changes\n- Task categorization (To Do, In Progress, Done)\n- Task priority levels (Low, Medium, High)\n- Due date assignment and reminders\n- Local storage persistence\n- Dark/light mode toggle\n- Responsive design for mobile and desktop",
+    promptTitle: "Task Management App with Drag-and-Drop",
+    promptDescription: "A comprehensive prompt for building a React task management app with drag-and-drop functionality and modern features.",
     price: 4.99,
     image: "https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80",
     likes: 142,
     comments: 23,
     shares: 17,
     timeAgo: "2h ago",
-    tags: ["react", "productivity", "frontend"]
+    tags: ["react", "productivity", "frontend"],
+    permalink: createPermalinkFromHash(postHashes[0]),
+    demoUrl: "https://chatandbuild.com/demo/task-manager"
   },
   {
-    id: '2',
+    id: postHashes[1],
     author: mockAuthors[1],
     content: "Created this e-commerce dashboard in just 30 minutes with ChatAndBuild! The AI generated all the components and even added animations. Here's the prompt:",
     promptPreview: "A comprehensive dashboard with sales analytics, inventory tracking, and customer insights using React, Chart.js, and Tailwind CSS.",
     promptFull: "# E-commerce Analytics Dashboard\n\n## Requirements\nCreate a comprehensive e-commerce analytics dashboard with the following features:\n- Sales overview with daily, weekly, monthly views\n- Revenue metrics and comparisons to previous periods\n- Inventory tracking with low stock alerts\n- Customer demographics and behavior analysis\n- Order status tracking and management\n- Interactive charts and graphs for data visualization\n- Responsive design for all device sizes",
+    promptTitle: "E-commerce Analytics Dashboard",
+    promptDescription: "A detailed prompt for creating a comprehensive e-commerce analytics dashboard with multiple data visualizations.",
     price: 7.99,
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80",
     likes: 231,
     comments: 42,
     shares: 38,
     timeAgo: "5h ago",
-    tags: ["dashboard", "ecommerce", "analytics"]
+    tags: ["dashboard", "ecommerce", "analytics"],
+    permalink: createPermalinkFromHash(postHashes[1]),
+    demoUrl: "https://chatandbuild.com/demo/ecommerce-dashboard"
   },
   {
-    id: '3',
+    id: postHashes[2],
     author: mockAuthors[2],
     content: "This AI-powered recipe generator is a game-changer! Built it with ChatAndBuild in an afternoon. The prompt was simple but effective:",
     promptPreview: "A web app that generates recipes based on available ingredients, with filtering options for dietary restrictions and cuisine types.",
     promptFull: "# Recipe Generator with Ingredient Search\n\n## Requirements\nCreate a web application that helps users find recipes based on ingredients they already have:\n- Input field for users to add available ingredients\n- Recipe search algorithm that prioritizes recipes using the most available ingredients\n- Filters for dietary restrictions (vegetarian, vegan, gluten-free, etc.)\n- Filters for cuisine types (Italian, Mexican, Indian, etc.)\n- Detailed recipe view with ingredients, instructions, and nutritional information\n- Option to save favorite recipes\n- Responsive design for mobile and desktop",
+    promptTitle: "Recipe Generator with Ingredient Search",
+    promptDescription: "A prompt for building a web app that helps users find recipes based on ingredients they already have.",
     price: 3.99,
     image: "https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80",
     likes: 98,
     comments: 15,
     shares: 7,
     timeAgo: "1d ago",
-    tags: ["food", "utility", "javascript"]
+    tags: ["food", "utility", "javascript"],
+    permalink: createPermalinkFromHash(postHashes[2]),
+    demoUrl: "https://chatandbuild.com/demo/recipe-finder"
   },
   {
-    id: '4',
+    id: postHashes[3],
     author: mockAuthors[3],
     content: "Just launched my portfolio website created with ChatAndBuild! The AI helped me design a unique layout and even suggested animations. Here's the prompt I used:",
     promptPreview: "A modern, interactive portfolio website with project showcases, skill visualization, and contact form using React, Three.js, and GSAP animations.",
     promptFull: "# Creative Developer Portfolio\n\n## Requirements\nCreate a modern, interactive portfolio website with the following features:\n- Unique and creative homepage with interactive elements\n- Project showcase with detailed case studies and live demos\n- Skills section with visual representation of proficiency levels\n- About me section with personal story and professional journey\n- Contact form with validation and submission functionality\n- Smooth page transitions and scroll animations\n- 3D elements using Three.js for visual interest\n- Responsive design with mobile-first approach",
+    promptTitle: "Creative Developer Portfolio",
+    promptDescription: "A prompt for creating a modern, interactive portfolio website with unique design elements and animations.",
     price: 9.99,
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80",
     likes: 315,
     comments: 47,
     shares: 29,
     timeAgo: "2d ago",
-    tags: ["portfolio", "threejs", "animation"]
+    tags: ["portfolio", "threejs", "animation"],
+    permalink: createPermalinkFromHash(postHashes[3]),
+    demoUrl: "https://chatandbuild.com/demo/portfolio-showcase"
   },
   {
-    id: '5',
+    id: postHashes[4],
     author: mockAuthors[4],
     content: "Built this meditation app with ChatAndBuild in just a few hours! The AI even helped me implement the audio player functionality. Check out the prompt:",
     promptPreview: "A React-based meditation app with timer, guided sessions, progress tracking, and ambient sounds using Howler.js and Tailwind CSS.",
     promptFull: "# Mindfulness Meditation App\n\n## Requirements\nCreate a meditation and mindfulness app with the following features:\n- Timer for unguided meditation sessions with customizable duration\n- Library of guided meditation sessions for different purposes (sleep, anxiety, focus, etc.)\n- Ambient sound mixer with nature sounds and binaural beats\n- Daily streaks and meditation statistics\n- User profiles with meditation history and favorites\n- Reminders and scheduling functionality\n- Journal feature for recording thoughts after meditation\n- Responsive design with a calming aesthetic",
+    promptTitle: "Mindfulness Meditation App",
+    promptDescription: "A prompt for building a meditation and mindfulness app with timers, guided sessions, and ambient sounds.",
     price: 5.99,
     image: "https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80",
     likes: 187,
     comments: 31,
     shares: 14,
     timeAgo: "3d ago",
-    tags: ["wellness", "audio", "react"]
+    tags: ["wellness", "audio", "react"],
+    permalink: createPermalinkFromHash(postHashes[4]),
+    demoUrl: "https://chatandbuild.com/demo/meditation-app"
   }
 ];
 

@@ -22,6 +22,8 @@ export interface Post {
   shares: number;
   timeAgo: string;
   tags?: string[];
+  permalink?: string;
+  demoUrl?: string;
 }
 
-export type Platform = 'chatgpt' | 'claude' | 'bard' | 'bing' | 'other';
+export type Platform = 'chatandbuild' | 'windsurf' | 'cursor' | 'chatgpt';
