@@ -1,46 +1,79 @@
 import React from 'react';
-import { Home, Compass, Bookmark, User, Settings, HelpCircle } from 'lucide-react';
+import { Home, TrendingUp, Bookmark, Settings, User, MessageSquare, Search, Zap, Heart } from 'lucide-react';
 
 interface SidebarProps {
   isDarkMode: boolean;
+  currentView: 'feed' | 'trending';
+  setCurrentView: (view: 'feed' | 'trending') => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isDarkMode }) => {
-  const navItems = [
-    { icon: Home, label: 'Home', active: true },
-    { icon: Compass, label: 'Explore', active: false },
-    { icon: Bookmark, label: 'Saved', active: false },
-    { icon: User, label: 'Profile', active: false },
-    { icon: Settings, label: 'Settings', active: false },
-    { icon: HelpCircle, label: 'Help', active: false },
-  ];
-
+const Sidebar: React.FC<SidebarProps> = ({ isDarkMode, currentView, setCurrentView }) => {
   return (
-    <aside className="hidden md:flex flex-col w-64 border-r border-gray-200 dark:border-gray-800 h-screen sticky top-0 pt-16">
-      <nav className="flex-1 px-4 py-6">
-        <ul className="space-y-1">
-          {navItems.map((item, index) => (
-            <li key={index}>
-              <a
-                href="#"
-                className={`flex items-center px-4 py-3 rounded-lg font-nunito font-medium transition duration-200 ${
-                  item.active
-                    ? 'bg-primary-50 dark:bg-primary-900 text-primary-600 dark:text-primary-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400'
-                }`}
-              >
-                <item.icon className={`h-5 w-5 mr-3 ${item.active ? 'text-primary-600 dark:text-primary-400' : ''}`} />
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+    <aside className="hidden md:block w-64 border-r border-gray-200 dark:border-gray-700 p-4 sticky top-16 h-[calc(100vh-4rem)]">
+      <nav className="space-y-1">
+        <button 
+          onClick={() => setCurrentView('feed')}
+          className={`w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium ${
+            currentView === 'feed' 
+              ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+          }`}
+        >
+          <Home className="w-5 h-5 mr-3" />
+          Home
+        </button>
+        
+        <button 
+          onClick={() => setCurrentView('trending')}
+          className={`w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium ${
+            currentView === 'trending' 
+              ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+          }`}
+        >
+          <TrendingUp className="w-5 h-5 mr-3" />
+          Trending
+        </button>
+        
+        <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <Search className="w-5 h-5 mr-3" />
+          Explore
+        </button>
+        
+        <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <Bookmark className="w-5 h-5 mr-3" />
+          Saved
+        </button>
+        
+        <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <Heart className="w-5 h-5 mr-3" />
+          Liked
+        </button>
+        
+        <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <MessageSquare className="w-5 h-5 mr-3" />
+          Messages
+        </button>
       </nav>
       
-      <div className="p-4 border-t border-gray-200 dark:border-gray-800">
-        <button className="w-full bg-primary-600 hover:bg-primary-700 text-white font-nunito font-medium py-2 px-4 rounded-lg transition duration-200">
-          Create Prompt
-        </button>
+      <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-4">
+        <h3 className="font-nunito font-semibold text-gray-900 dark:text-white px-4 mb-2">Your Prompts</h3>
+        <nav className="space-y-1">
+          <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <Zap className="w-5 h-5 mr-3" />
+            My Prompts
+          </button>
+          
+          <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <User className="w-5 h-5 mr-3" />
+            Profile
+          </button>
+          
+          <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <Settings className="w-5 h-5 mr-3" />
+            Settings
+          </button>
+        </nav>
       </div>
     </aside>
   );

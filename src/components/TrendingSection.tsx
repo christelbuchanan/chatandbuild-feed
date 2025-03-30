@@ -1,11 +1,12 @@
 import React from 'react';
-import { TrendingUp } from 'lucide-react';
+import { TrendingUp, ExternalLink } from 'lucide-react';
 
 interface TrendingSectionProps {
   isDarkMode: boolean;
+  setCurrentView?: (view: 'feed' | 'trending') => void;
 }
 
-const TrendingSection: React.FC<TrendingSectionProps> = ({ isDarkMode }) => {
+const TrendingSection: React.FC<TrendingSectionProps> = ({ isDarkMode, setCurrentView }) => {
   const trendingTopics = [
     { name: 'React Dashboard', posts: 1243 },
     { name: 'AI Chatbot', posts: 982 },
@@ -39,9 +40,21 @@ const TrendingSection: React.FC<TrendingSectionProps> = ({ isDarkMode }) => {
     <div className="hidden lg:block w-80 p-4 space-y-6">
       {/* Trending topics */}
       <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-        <div className="flex items-center p-4 border-b border-gray-100 dark:border-gray-700">
-          <TrendingUp className="w-5 h-5 text-primary-500 mr-2" />
-          <h3 className="font-nunito font-bold text-lg text-gray-900 dark:text-white">Trending Prompts</h3>
+        <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-700">
+          <div className="flex items-center">
+            <TrendingUp className="w-5 h-5 text-primary-500 mr-2" />
+            <h3 className="font-nunito font-bold text-lg text-gray-900 dark:text-white">Trending Prompts</h3>
+          </div>
+          <button 
+            onClick={() => {
+              if (setCurrentView) {
+                setCurrentView('trending');
+              }
+            }}
+            className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
+          >
+            <ExternalLink size={16} />
+          </button>
         </div>
         <ul className="p-2">
           {trendingTopics.map((topic, index) => (

@@ -37,6 +37,20 @@ const mockAuthors: Author[] = [
     username: 'oliviadev',
     avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80',
     verified: false
+  },
+  {
+    id: '106',
+    name: 'Michael Rodriguez',
+    username: 'michaelr',
+    avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80',
+    verified: true
+  },
+  {
+    id: '107',
+    name: 'Emma Thompson',
+    username: 'emmadev',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80',
+    verified: true
   }
 ];
 
@@ -46,7 +60,12 @@ const postHashes = [
   'g5hY2jK8lM',
   'n4pQ6rS1tU',
   'v3wX7yZ9aB',
-  'c2dE8fG4hI'
+  'c2dE8fG4hI',
+  'j9kL1mN3oP',
+  'q7rS5tU2vW',
+  'x4yZ8aB6cD',
+  'e3fG7hI9jK',
+  'l1mN5oP2qR'
 ];
 
 export const mockPosts: Post[] = [
@@ -139,6 +158,96 @@ export const mockPosts: Post[] = [
     tags: ["wellness", "audio", "react"],
     permalink: createPermalinkFromHash(postHashes[4]),
     demoUrl: "https://chatandbuild.com/demo/meditation-app"
+  },
+  {
+    id: postHashes[5],
+    author: mockAuthors[5],
+    content: "Just created this AI-powered content generator that helps with blog posts, social media, and more. The prompt was comprehensive:",
+    promptPreview: "A content generation tool with templates for various formats, tone adjustment, and SEO optimization using React, OpenAI API, and Firebase.",
+    promptFull: "# AI Content Generator\n\n## Requirements\nCreate a web application for AI-powered content generation with the following features:\n- Multiple content templates (blog posts, social media, emails, product descriptions)\n- Tone and style adjustment options (professional, casual, persuasive, etc.)\n- Length and format customization\n- SEO optimization suggestions\n- Grammar and readability checking\n- Content history and saved templates\n- Export options (Markdown, HTML, plain text)\n- User accounts with content library",
+    promptTitle: "AI Content Generator",
+    promptDescription: "A prompt for building a versatile AI-powered content generation tool with multiple templates and customization options.",
+    price: 12.99,
+    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80",
+    likes: 276,
+    comments: 53,
+    shares: 41,
+    timeAgo: "4d ago",
+    tags: ["ai", "content", "productivity"],
+    permalink: createPermalinkFromHash(postHashes[5]),
+    demoUrl: "https://chatandbuild.com/demo/content-generator"
+  },
+  {
+    id: postHashes[6],
+    author: mockAuthors[6],
+    content: "Created this interactive data visualization dashboard that makes complex data easy to understand. The prompt helped me implement all the charts:",
+    promptPreview: "A data visualization dashboard with interactive charts, filters, and export options using D3.js, React, and CSV/JSON data import.",
+    promptFull: "# Interactive Data Visualization Dashboard\n\n## Requirements\nCreate a data visualization dashboard with the following features:\n- Multiple chart types (bar, line, pie, scatter, heatmap)\n- Interactive elements (tooltips, zooming, panning)\n- Data filtering and sorting options\n- Responsive layout that adapts to different screen sizes\n- Data import from CSV, JSON, or API\n- Export charts as images or data as CSV\n- Dark/light mode toggle\n- Customizable color schemes and chart options",
+    promptTitle: "Interactive Data Visualization Dashboard",
+    promptDescription: "A prompt for building a flexible data visualization dashboard with multiple chart types and interactive features.",
+    price: 8.99,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80",
+    likes: 198,
+    comments: 29,
+    shares: 22,
+    timeAgo: "5d ago",
+    tags: ["data", "visualization", "d3js"],
+    permalink: createPermalinkFromHash(postHashes[6]),
+    demoUrl: "https://chatandbuild.com/demo/data-dashboard"
+  },
+  {
+    id: postHashes[7],
+    author: mockAuthors[0],
+    content: "Built this language learning app with spaced repetition and gamification elements. The prompt helped me implement the entire learning algorithm:",
+    promptPreview: "A language learning app with spaced repetition, flashcards, progress tracking, and gamification using React Native and Firebase.",
+    promptFull: "# Language Learning App with Spaced Repetition\n\n## Requirements\nCreate a language learning application with the following features:\n- Spaced repetition algorithm for optimal memorization\n- Flashcard system with text, images, and audio\n- Multiple learning modes (reading, writing, listening, speaking)\n- Progress tracking and statistics\n- Gamification elements (streaks, points, achievements)\n- Offline mode with sync capability\n- Multiple language support\n- Customizable learning paths based on user goals",
+    promptTitle: "Language Learning App with Spaced Repetition",
+    promptDescription: "A prompt for building an effective language learning app with spaced repetition algorithm and gamification elements.",
+    price: 6.99,
+    image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80",
+    likes: 245,
+    comments: 37,
+    shares: 19,
+    timeAgo: "6d ago",
+    tags: ["education", "language", "mobile"],
+    permalink: createPermalinkFromHash(postHashes[7]),
+    demoUrl: "https://chatandbuild.com/demo/language-app"
+  },
+  {
+    id: postHashes[8],
+    author: mockAuthors[1],
+    content: "Just launched this project management tool with Kanban boards, time tracking, and team collaboration features. The prompt was detailed and helped me build it quickly:",
+    promptPreview: "A project management application with Kanban boards, time tracking, team collaboration, and reporting using React, Redux, and Firebase.",
+    promptFull: "# Project Management Tool with Kanban\n\n## Requirements\nCreate a comprehensive project management application with the following features:\n- Kanban board with customizable columns and card details\n- Task assignment, due dates, and priority levels\n- Time tracking and reporting\n- Team collaboration with comments and notifications\n- File attachments and document sharing\n- Sprint planning and backlog management\n- Dashboard with project metrics and charts\n- User roles and permissions system",
+    promptTitle: "Project Management Tool with Kanban",
+    promptDescription: "A prompt for building a full-featured project management application with Kanban boards and team collaboration features.",
+    price: 14.99,
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80",
+    likes: 312,
+    comments: 58,
+    shares: 47,
+    timeAgo: "1w ago",
+    tags: ["productivity", "management", "collaboration"],
+    permalink: createPermalinkFromHash(postHashes[8]),
+    demoUrl: "https://chatandbuild.com/demo/project-manager"
+  },
+  {
+    id: postHashes[9],
+    author: mockAuthors[2],
+    content: "Created this real-time multiplayer quiz game that's perfect for virtual team building. The prompt helped me implement all the game mechanics:",
+    promptPreview: "A real-time multiplayer quiz game with custom categories, leaderboards, and team modes using React, Socket.io, and Express.",
+    promptFull: "# Real-time Multiplayer Quiz Game\n\n## Requirements\nCreate an interactive multiplayer quiz game with the following features:\n- Real-time gameplay with multiple participants\n- Custom quiz categories and difficulty levels\n- Question timer with visual countdown\n- Live leaderboard updates\n- Team mode and individual mode\n- Quiz creator for custom questions\n- Game lobby with room codes\n- Results screen with statistics and correct answers",
+    promptTitle: "Real-time Multiplayer Quiz Game",
+    promptDescription: "A prompt for building an engaging real-time multiplayer quiz game with custom categories and team modes.",
+    price: 9.99,
+    image: "https://images.unsplash.com/photo-1511213966740-24d719a0a814?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80",
+    likes: 287,
+    comments: 43,
+    shares: 31,
+    timeAgo: "2w ago",
+    tags: ["game", "multiplayer", "socketio"],
+    permalink: createPermalinkFromHash(postHashes[9]),
+    demoUrl: "https://chatandbuild.com/demo/quiz-game"
   }
 ];
 
@@ -208,3 +317,61 @@ Create a React-based task management application with the following features:
 - Add subtle sound effects for task completion
 - Include a simple onboarding guide for first-time users
 `;
+
+// Add trending categories data
+export const trendingCategories = [
+  { id: 'development', name: 'Development', count: 1243, icon: 'code' },
+  { id: 'design', name: 'Design', count: 982, icon: 'pen-tool' },
+  { id: 'productivity', name: 'Productivity', count: 756, icon: 'clock' },
+  { id: 'ai', name: 'AI & Machine Learning', count: 621, icon: 'cpu' },
+  { id: 'mobile', name: 'Mobile Apps', count: 543, icon: 'smartphone' }
+];
+
+// Add trending prompts data
+export const trendingPrompts = [
+  {
+    id: 'tp1',
+    title: 'Task Management App',
+    description: 'React-based task manager with drag-and-drop',
+    author: mockAuthors[0],
+    likes: 1243,
+    price: 4.99,
+    tags: ['react', 'productivity']
+  },
+  {
+    id: 'tp2',
+    title: 'Portfolio Website',
+    description: 'Interactive developer portfolio with 3D elements',
+    author: mockAuthors[3],
+    likes: 982,
+    price: 9.99,
+    tags: ['portfolio', 'threejs']
+  },
+  {
+    id: 'tp3',
+    title: 'E-commerce Dashboard',
+    description: 'Analytics dashboard for online stores',
+    author: mockAuthors[1],
+    likes: 756,
+    price: 7.99,
+    tags: ['dashboard', 'ecommerce']
+  },
+  {
+    id: 'tp4',
+    title: 'AI Content Generator',
+    description: 'Multi-purpose content creation tool',
+    author: mockAuthors[5],
+    likes: 621,
+    price: 12.99,
+    tags: ['ai', 'content']
+  },
+  {
+    id: 'tp5',
+    title: 'Meditation App',
+    description: 'Mindfulness app with guided sessions',
+    author: mockAuthors[4],
+    likes: 543,
+    price: 5.99,
+    tags: ['wellness', 'audio']
+  }
+];
