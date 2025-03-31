@@ -8,13 +8,14 @@ import TrendingPrompts from './components/TrendingPrompts';
 import Messages from './components/Messages';
 import SavedPrompts from './components/SavedPrompts';
 import LikedPrompts from './components/LikedPrompts';
+import MyPrompts from './components/MyPrompts';
 import PurchaseModal from './components/PurchaseModal';
 import CreatePromptModal from './components/CreatePromptModal';
 import { Post } from './types';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [currentView, setCurrentView] = useState<'feed' | 'trending' | 'messages' | 'saved' | 'liked'>('feed');
+  const [currentView, setCurrentView] = useState<'feed' | 'trending' | 'messages' | 'saved' | 'liked' | 'my-prompts'>('feed');
   const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [isCreatePromptModalOpen, setIsCreatePromptModalOpen] = useState(false);
@@ -73,6 +74,14 @@ function App() {
             {currentView === 'liked' && (
               <LikedPrompts 
                 isDarkMode={isDarkMode} 
+              />
+            )}
+            
+            {currentView === 'my-prompts' && (
+              <MyPrompts 
+                isDarkMode={isDarkMode}
+                onCreatePrompt={() => setIsCreatePromptModalOpen(true)}
+                onPurchase={handlePurchase}
               />
             )}
           </main>
