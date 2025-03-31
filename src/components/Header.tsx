@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
-import { Search, Bell, MessageSquare, Moon, Sun, Plus, TrendingUp, Home } from 'lucide-react';
+import { Search, Bell, MessageSquare, Moon, Sun, Plus } from 'lucide-react';
 import CreatePromptModal from './CreatePromptModal';
 
 interface HeaderProps {
   isDarkMode: boolean;
-  setIsDarkMode: (isDarkMode: boolean) => void;
-  currentView: 'feed' | 'trending';
-  setCurrentView: (view: 'feed' | 'trending') => void;
+  toggleDarkMode: () => void;
+  onCreatePrompt: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ isDarkMode, setIsDarkMode, currentView, setCurrentView }) => {
+const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode, onCreatePrompt }) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const handleCreatePrompt = (promptData: any) => {
     console.log('New prompt created:', promptData);
     // Here you would typically send this data to your backend
+    setIsCreateModalOpen(false);
+    onCreatePrompt();
   };
 
   return (
     <header className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center">
-          <div className="flex items-center mr-8">
+          <div className="flex items-center">
             <img 
               src="https://placehold.co/32x32/5046e4/white?text=C&font=montserrat" 
               alt="ChatAndBuild Logo" 
@@ -30,30 +31,7 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, setIsDarkMode, currentView,
             <span className="ml-2 font-nunito font-bold text-xl text-gray-900 dark:text-white hidden sm:inline-block">ChatAndBuild</span>
           </div>
           
-          <nav className="hidden md:flex space-x-1">
-            <button 
-              onClick={() => setCurrentView('feed')}
-              className={`px-4 py-2 rounded-lg font-nunito font-medium text-sm flex items-center ${
-                currentView === 'feed' 
-                  ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-              }`}
-            >
-              <Home size={18} className="mr-1.5" />
-              Home
-            </button>
-            <button 
-              onClick={() => setCurrentView('trending')}
-              className={`px-4 py-2 rounded-lg font-nunito font-medium text-sm flex items-center ${
-                currentView === 'trending' 
-                  ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-              }`}
-            >
-              <TrendingUp size={18} className="mr-1.5" />
-              Trending
-            </button>
-          </nav>
+          {/* Navigation buttons removed from here */}
         </div>
         
         <div className="flex items-center space-x-2">
@@ -70,12 +48,17 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, setIsDarkMode, currentView,
             <Bell size={20} />
           </button>
           
-          <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">
+          <button 
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 relative"
+          >
             <MessageSquare size={20} />
+            <span className="absolute top-0 right-0 w-4 h-4 bg-primary-600 text-white text-xs font-bold rounded-full flex items-center justify-center">
+              2
+            </span>
           </button>
           
           <button 
-            onClick={() => setIsDarkMode(!isDarkMode)}
+            onClick={toggleDarkMode}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
           >
             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}

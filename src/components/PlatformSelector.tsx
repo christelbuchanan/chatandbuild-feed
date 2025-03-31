@@ -1,11 +1,60 @@
 import React, { useState } from 'react';
 import { Copy, ExternalLink } from 'lucide-react';
-import { platforms, promptContent } from '../data/mockData';
+import { availablePlatforms } from '../data/mockData';
 
 interface PlatformSelectorProps {
   promptId: string;
   onClose: () => void;
 }
+
+// Define the platform data structure
+interface PlatformInfo {
+  id: Platform;
+  name: string;
+  icon: string;
+  url: string;
+}
+
+// Sample prompt content for demonstration
+const promptContent = `Create a modern task management app using React and Firebase with the following features:
+- User authentication with email/password and social logins
+- Task creation with title, description, due date, and priority
+- Task categories and labels for organization
+- Real-time updates using Firestore
+- Responsive design for mobile and desktop
+- Dark mode support
+- Notification system for due dates`;
+
+// Define platforms with their details
+const platforms: PlatformInfo[] = [
+  {
+    id: 'chatandbuild',
+    name: 'ChatAndBuild',
+    icon: 'code',
+    url: 'https://chatandbuild.com'
+  },
+  {
+    id: 'windsurf',
+    name: 'Windsurf',
+    icon: 'wind',
+    url: 'https://windsurf.ai'
+  },
+  {
+    id: 'cursor',
+    name: 'Cursor',
+    icon: 'edit-3',
+    url: 'https://cursor.sh'
+  },
+  {
+    id: 'chatgpt',
+    name: 'ChatGPT',
+    icon: 'message-square',
+    url: 'https://chat.openai.com'
+  }
+];
+
+// Import Platform type
+import { Platform } from '../types';
 
 const PlatformSelector: React.FC<PlatformSelectorProps> = ({ promptId, onClose }) => {
   const [copied, setCopied] = useState(false);

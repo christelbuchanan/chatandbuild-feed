@@ -1,10 +1,10 @@
 import React from 'react';
-import { Home, TrendingUp, Bookmark, Settings, User, MessageSquare, Search, Zap, Heart } from 'lucide-react';
+import { Home, TrendingUp, Bookmark, Settings, User, MessageSquare, Zap, Heart } from 'lucide-react';
 
 interface SidebarProps {
   isDarkMode: boolean;
-  currentView: 'feed' | 'trending';
-  setCurrentView: (view: 'feed' | 'trending') => void;
+  currentView: 'feed' | 'trending' | 'messages' | 'saved' | 'liked';
+  setCurrentView: (view: 'feed' | 'trending' | 'messages' | 'saved' | 'liked') => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isDarkMode, currentView, setCurrentView }) => {
@@ -35,22 +35,38 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkMode, currentView, setCurrentVi
           Trending
         </button>
         
-        <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-          <Search className="w-5 h-5 mr-3" />
-          Explore
-        </button>
-        
-        <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+        <button 
+          onClick={() => setCurrentView('saved')}
+          className={`w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium ${
+            currentView === 'saved' 
+              ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+          }`}
+        >
           <Bookmark className="w-5 h-5 mr-3" />
           Saved
         </button>
         
-        <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+        <button 
+          onClick={() => setCurrentView('liked')}
+          className={`w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium ${
+            currentView === 'liked' 
+              ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+          }`}
+        >
           <Heart className="w-5 h-5 mr-3" />
           Liked
         </button>
         
-        <button className="w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+        <button 
+          onClick={() => setCurrentView('messages')}
+          className={`w-full flex items-center px-4 py-3 rounded-lg font-nunito font-medium ${
+            currentView === 'messages' 
+              ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+          }`}
+        >
           <MessageSquare className="w-5 h-5 mr-3" />
           Messages
         </button>

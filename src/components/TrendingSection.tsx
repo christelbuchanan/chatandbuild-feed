@@ -3,6 +3,7 @@ import { TrendingUp, ExternalLink } from 'lucide-react';
 
 interface TrendingSectionProps {
   isDarkMode: boolean;
+  onPurchase?: (post: any) => void;
   setCurrentView?: (view: 'feed' | 'trending') => void;
 }
 

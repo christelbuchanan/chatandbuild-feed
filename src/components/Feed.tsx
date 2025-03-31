@@ -1,12 +1,14 @@
 import React from 'react';
 import PostCard from './PostCard';
 import { mockPosts } from '../data/mockData';
+import { Post } from '../types';
 
 interface FeedProps {
   isDarkMode: boolean;
+  onPurchase?: (post: Post) => void;
 }
 
-const Feed: React.FC<FeedProps> = ({ isDarkMode }) => {
+const Feed: React.FC<FeedProps> = ({ isDarkMode, onPurchase }) => {
   return (
     <div className="max-w-2xl mx-auto py-4 px-4 sm:px-6">
       <div className="mb-6">
@@ -16,7 +18,12 @@ const Feed: React.FC<FeedProps> = ({ isDarkMode }) => {
       
       <div className="space-y-6">
         {mockPosts.map(post => (
-          <PostCard key={post.id} post={post} isDarkMode={isDarkMode} />
+          <PostCard 
+            key={post.id} 
+            post={post} 
+            isDarkMode={isDarkMode} 
+            onPurchase={onPurchase}
+          />
         ))}
       </div>
     </div>

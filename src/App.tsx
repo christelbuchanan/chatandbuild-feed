@@ -1,51 +1,109 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import MobileNav from './components/MobileNav';
 import Feed from './components/Feed';
 import TrendingSection from './components/TrendingSection';
-import MobileNav from './components/MobileNav';
 import TrendingPrompts from './components/TrendingPrompts';
+import Messages from './components/Messages';
+import SavedPrompts from './components/SavedPrompts';
+import LikedPrompts from './components/LikedPrompts';
+import PurchaseModal from './components/PurchaseModal';
+import CreatePromptModal from './components/CreatePromptModal';
+import { Post } from './types';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [currentView, setCurrentView] = useState<'feed' | 'trending'>('feed');
-  
+  const [currentView, setCurrentView] = useState<'feed' | 'trending' | 'messages' | 'saved' | 'liked'>('feed');
+  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const [isCreatePromptModalOpen, setIsCreatePromptModalOpen] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  const handlePurchase = (post: Post) => {
+    setSelectedPost(post);
+    setIsPurchaseModalOpen(true);
+  };
+
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} font-nunito`}>
-      <Header 
-        isDarkMode={isDarkMode} 
-        setIsDarkMode={setIsDarkMode} 
-        currentView={currentView}
-        setCurrentView={setCurrentView}
-      />
-      
-      <div className="flex">
-        <Sidebar 
+    <div className={isDarkMode ? 'dark' : ''}>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
+        <Header 
           isDarkMode={isDarkMode} 
-          currentView={currentView}
-          setCurrentView={setCurrentView}
+          toggleDarkMode={toggleDarkMode} 
+          onCreatePrompt={() => setIsCreatePromptModalOpen(true)}
         />
         
-        <main className="flex-1 pb-16 md:pb-0">
-          {currentView === 'feed' ? (
-            <div className="container mx-auto flex">
-              <Feed isDarkMode={isDarkMode} />
-              <TrendingSection 
+        <div className="flex">
+          <Sidebar 
+            isDarkMode={isDarkMode} 
+            currentView={currentView} 
+            setCurrentView={setCurrentView} 
+          />
+          
+          <main className="flex-1">
+            {currentView === 'feed' && (
+              <Feed 
                 isDarkMode={isDarkMode} 
-                setCurrentView={setCurrentView}
+                onPurchase={handlePurchase}
               />
-            </div>
-          ) : (
-            <TrendingPrompts isDarkMode={isDarkMode} />
+            )}
+            
+            {currentView === 'trending' && (
+              <TrendingPrompts 
+                isDarkMode={isDarkMode} 
+              />
+            )}
+            
+            {currentView === 'messages' && (
+              <Messages 
+                isDarkMode={isDarkMode} 
+              />
+            )}
+
+            {currentView === 'saved' && (
+              <SavedPrompts 
+                isDarkMode={isDarkMode} 
+              />
+            )}
+
+            {currentView === 'liked' && (
+              <LikedPrompts 
+                isDarkMode={isDarkMode} 
+              />
+            )}
+          </main>
+          
+          {/* Trending section sidebar - only shown on feed view */}
+          {currentView === 'feed' && (
+            <TrendingSection 
+              isDarkMode={isDarkMode} 
+              setCurrentView={setCurrentView}
+            />
           )}
-        </main>
+        </div>
+        
+        <MobileNav 
+          currentView={currentView} 
+          setCurrentView={setCurrentView} 
+        />
+        
+        {isPurchaseModalOpen && selectedPost && (
+          <PurchaseModal 
+            post={selectedPost} 
+            onClose={() => setIsPurchaseModalOpen(false)} 
+          />
+        )}
+        
+        {isCreatePromptModalOpen && (
+          <CreatePromptModal 
+            onClose={() => setIsCreatePromptModalOpen(false)} 
+          />
+        )}
       </div>
-      
-      <MobileNav 
-        isDarkMode={isDarkMode} 
-        currentView={currentView}
-        setCurrentView={setCurrentView}
-      />
     </div>
   );
 }
